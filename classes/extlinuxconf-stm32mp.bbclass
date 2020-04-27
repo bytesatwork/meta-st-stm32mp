@@ -90,9 +90,11 @@ UBOOT_EXTLINUX_TIMEOUT ?= "20"
 python do_create_multiextlinux_config() {
     targets = d.getVar('UBOOT_EXTLINUX_TARGETS')
     if not targets:
-        bb.fatal("UBOOT_EXTLINUX_TARGETS not defined, nothing to do")
+        bb.note("UBOOT_EXTLINUX_TARGETS not defined, nothing to do")
+        return
     if not targets.strip():
-        bb.fatal("No targets, nothing to do")
+        bb.note("No targets, nothing to do")
+        return
 
     for target in targets.split():
 
